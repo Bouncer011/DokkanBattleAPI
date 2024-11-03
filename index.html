@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Your Embed Title Here">
+    
+    <meta property="og:description" content="Dokkan Offset Sorter Made by mindset.">
+    
+    <meta property="og:url" content="https://bouncer011.github.io/DokkanBattleAPI/">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" content="https://dblegends.net/assets/card_arts/0641_VegetaM_641/0621_GogetaSS4_621_Art.png">
+    
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <meta property="og:site_name" content="Dokkan Offset Sorter/Finder">
     <title>Dokkan Offset Sorter</title>
     <style>
         body {
@@ -93,21 +107,21 @@
             <thead>
                 <tr>
                     <th onclick="sortTable(0)">nth</th>
-                    <th onclick="sortTable(1)">paddr</th>
-                    <th onclick="sortTable(2)">vaddr</th>
+                    <th onclick="sortTable(1)">paddr (offset)</th>
+                    <th onclick="sortTable(2)">vaddr (offset)</th>
                     <th onclick="sortTable(3)">bind</th>
                     <th onclick="sortTable(4)">type</th>
-                    <th onclick="sortTable(5)">size</th>
-                    <th onclick="sortTable(6)">lib name</th>
+                    <th onclick="sortTable(5)">size (b/kb)</th>
+                    <th onclick="sortTable(6)">lib name (offset method)</th>
                 </tr>
             </thead>
             <tbody id="dataBody">
-                <!-- Data will be populated here -->
+                
             </tbody>
         </table>
         <div class="pagination">
             <button onclick="prevPage()" id="prevBtn" disabled>Previous</button>
-            <span id="pageIndicator">Page 1 of 300</span>
+            <span id="pageIndicator">Page 1 of 7038</span>
             <button onclick="nextPage()" id="nextBtn">Next</button>
         </div>
     </div>
@@ -116,12 +130,12 @@
         let data = [];
         let currentPage = 1;
         const rowsPerPage = 25;
-        const maxPages = 700;
+        const maxPages = 7038;
 
         async function loadData() {
             const response = await fetch('https://raw.githubusercontent.com/Bouncer011/Dokkan/refs/heads/main/p/some/code/for/dokkan/by/mind/Lib%20Dumper/.axct');
             const text = await response.text();
-            const lines = text.split('\n').slice(2); // Skip headers
+            const lines = text.split('\n').slice(2);
 
             data = lines.map(line => line.trim().split(/\s+/)).filter(columns => columns.length >= 7);
             displayPage(1);
